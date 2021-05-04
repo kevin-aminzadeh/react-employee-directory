@@ -1,6 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
+import API from "./utils/API";
 
 function App() {
+  // Initialize employees state
+  const [employeesData, setEmployeesData] = useState([]);
+
+  // Fetch employees data from API on component mount
+  useEffect(() => {
+    API.fetchUsers()
+      .then((res) => {
+        setEmployeesData(res);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <div className="App">
       <header>
@@ -58,6 +71,27 @@ function App() {
                   <i className="fas fa-caret-down"></i>
                 </div>
               </div>
+              {employeesData.map((employee, employeeIndex) => {
+                return (
+                  <div
+                    className="row border-top border-bottom py-2"
+                    key={employeeIndex}
+                  >
+                    <div className="col">
+                      <span>{employee.firstName}</span>
+                    </div>
+                    <div className="col">
+                      <span>{employee.lastName}</span>
+                    </div>
+                    <div className="col">
+                      <span>{employee.gender}</span>
+                    </div>
+                    <div className="col">
+                      <span>{employee.email}</span>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
