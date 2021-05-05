@@ -9,14 +9,14 @@ const API = {
 
     return users.map((user) => {
       return {
-        firstName: user.name.first,
-        lastName: user.name.last,
-        gender: user.gender,
+        firstName: user.name.first.toLowerCase(),
+        lastName: user.name.last.toLowerCase(),
+        gender: user.gender.toLowerCase(),
         location: {
-          city: user.location.city,
-          state: user.location.state,
+          city: user.location.city.toLowerCase(),
+          state: user.location.state.toLowerCase(),
         },
-        email: user.email,
+        email: user.email.toLowerCase(),
         image: user.picture.thumbnail,
       };
     });
