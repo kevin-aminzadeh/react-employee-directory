@@ -12,12 +12,9 @@ const API = {
         firstName: user.name.first.toLowerCase(),
         lastName: user.name.last.toLowerCase(),
         gender: user.gender.toLowerCase(),
-        location: {
-          city: user.location.city.toLowerCase(),
-          state: user.location.state.toLowerCase(),
-        },
         email: user.email.toLowerCase(),
-        image: user.picture.thumbnail,
+        state: user.location.state.toLowerCase(),
+        city: user.location.city.toLowerCase(),
       };
     });
   },
