@@ -1,9 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import API from "./utils/API";
+import sortObjArr from "./utils/helpers";
 
 function App() {
   // Initialize employees state
   const [employeesData, setEmployeesData] = useState([]);
+
+  // Initialize filtered employees state
+  const [filteredData, setFilteredData] = useState([]);
+
+  // Initialize Element Refs
+  const searchInputEl = useRef(null);
 
   // Fetch employees data from API on component mount
   useEffect(() => {
@@ -13,6 +20,75 @@ function App() {
       })
       .catch((err) => console.log(err));
   }, []);
+
+  // Filter dataset based on search term
+  const handleSearch = (searchTerm) => {
+    // Normalizer search input (convert searchTerm to lowercase)
+    const normalizedSearchTerm = searchTerm.toLowerCase();
+
+    setFilteredData(
+      employeesData.filter((employee) => {
+        return (
+          employee.firstName.startsWith(normalizedSearchTerm) ||
+          employee.lastName.startsWith(normalizedSearchTerm) ||
+          employee.email.startsWith(normalizedSearchTerm)
+        );
+      })
+    );
+  };
+
+  // Handle Search
+  const handleInputChange = (e) => {
+    handleSearch(searchInputEl.current.value);
+  };
+
+  const renderEmployees = () => {
+    if (!filteredData.length) {
+      return employeesData.map((employee, employeeIndex) => {
+        return (
+          <div
+            className="row border-top border-bottom py-2"
+            key={employeeIndex}
+          >
+            <div className="col">
+              <span>{employee.firstName}</span>
+            </div>
+            <div className="col">
+              <span>{employee.lastName}</span>
+            </div>
+            <div className="col">
+              <span>{employee.gender}</span>
+            </div>
+            <div className="col">
+              <span>{employee.email}</span>
+            </div>
+          </div>
+        );
+      });
+    } else {
+      return filteredData.map((employee, employeeIndex) => {
+        return (
+          <div
+            className="row border-top border-bottom py-2"
+            key={employeeIndex}
+          >
+            <div className="col">
+              <span>{employee.firstName}</span>
+            </div>
+            <div className="col">
+              <span>{employee.lastName}</span>
+            </div>
+            <div className="col">
+              <span>{employee.gender}</span>
+            </div>
+            <div className="col">
+              <span>{employee.email}</span>
+            </div>
+          </div>
+        );
+      });
+    }
+  };
 
   return (
     <div className="App">
@@ -44,7 +120,9 @@ function App() {
                   placeholder="Search Employees"
                   aria-label="default input example"
                   id="searchInput"
-                ></input>
+                  ref={searchInputEl}
+                  onChange={handleInputChange}
+                />
               </div>
             </form>
           </div>
@@ -52,46 +130,47 @@ function App() {
             <div className="container">
               <div className="row py-2">
                 <div className="col">
-                  <button className="border-0 bg-transparent">
+                  <button
+                    className="border-0 bg-transparent"
+                    data-column="firstName"
+                  >
                     <span className="fw-bold">First Name</span>
 
                     <i className="fas fa-caret-down"></i>
                   </button>
                 </div>
                 <div className="col">
-                  <span className="fw-bold">Last Name</span>
-                  <i className="fas fa-caret-down"></i>
+                  <button
+                    className="border-0 bg-transparent"
+                    data-column="lastName"
+                  >
+                    <span className="fw-bold">Last Name</span>
+
+                    <i className="fas fa-caret-down"></i>
+                  </button>
                 </div>
                 <div className="col">
-                  <span className="fw-bold">Gender</span>
-                  <i className="fas fa-caret-down"></i>
+                  <button
+                    className="border-0 bg-transparent"
+                    data-column="gender"
+                  >
+                    <span className="fw-bold">Gender</span>
+
+                    <i className="fas fa-caret-down"></i>
+                  </button>
                 </div>
                 <div className="col">
-                  <span className="fw-bold">Email</span>
-                  <i className="fas fa-caret-down"></i>
+                  <button
+                    className="border-0 bg-transparent"
+                    data-column="email"
+                  >
+                    <span className="fw-bold">Email Address</span>
+
+                    <i className="fas fa-caret-down"></i>
+                  </button>
                 </div>
               </div>
-              {employeesData.map((employee, employeeIndex) => {
-                return (
-                  <div
-                    className="row border-top border-bottom py-2"
-                    key={employeeIndex}
-                  >
-                    <div className="col">
-                      <span>{employee.firstName}</span>
-                    </div>
-                    <div className="col">
-                      <span>{employee.lastName}</span>
-                    </div>
-                    <div className="col">
-                      <span>{employee.gender}</span>
-                    </div>
-                    <div className="col">
-                      <span>{employee.email}</span>
-                    </div>
-                  </div>
-                );
-              })}
+              {renderEmployees()}
             </div>
           </div>
         </div>
