@@ -55,23 +55,25 @@ function Table(props) {
   };
 
   return (
-    <table className="table table-borderless">
-      <TableHead
-        columns={[
-          { name: "First Name", value: "firstName" },
-          { name: "Last Name", value: "lastName" },
-          { name: "Gender", value: "gender" },
-          { name: "Email Address", value: "email" },
-          { name: "State", value: "state" },
-          { name: "City", value: "city" },
-        ]}
-        handleSort={handleSort}
-      />
-      <TableBody
-        columns={props.columns}
-        data={filteredData.length ? filteredData : props.data}
-      />
-    </table>
+    <div className="table-responsive-lg ">
+      <table className="table table-borderless table-hover">
+        <TableHead
+          columns={[
+            { name: "First Name", value: "firstName" },
+            { name: "Last Name", value: "lastName" },
+            { name: "Gender", value: "gender" },
+            { name: "Email Address", value: "email" },
+            { name: "State", value: "state" },
+            { name: "City", value: "city" },
+          ]}
+          handleSort={handleSort}
+        />
+        <TableBody
+          columns={props.columns}
+          data={filteredData.length ? filteredData : props.data}
+        />
+      </table>
+    </div>
   );
 }
 

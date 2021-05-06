@@ -6,7 +6,7 @@ function SearchBar({ handleSearch }) {
 
   return (
     <div className="input-group h-100 ">
-      <div className="input-group-text bg-white ps-4 rounded-0 border-0 text-muted">
+      <div className="input-group-text bg-white ps-4 rounded-0 border-0 text-muted d-lg-flex">
         <i className="fa fa-search fa-lg"></i>
       </div>
 

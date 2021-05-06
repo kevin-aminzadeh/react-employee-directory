@@ -47,7 +47,7 @@ function App() {
             <div className="col">
               <h1 className="h2 fw-bold">Employees</h1>
             </div>
-            <div className="col-3">
+            <div className="col col-lg-3">
               <SearchBar handleSearch={handleInputChange} />
             </div>
           </div>
