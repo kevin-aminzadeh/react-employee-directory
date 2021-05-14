@@ -7,7 +7,7 @@
 
   <p align="center">
     <br />
-    <a href="#">View Live Demo</a>
+    <a href="https://kevin-aminzadeh.github.io/react-employee-directory">View Live Demo</a>
   </p>
 </p>
 
