@@ -37,6 +37,35 @@ function Table(props) {
     handleSearch(searchTerm);
   }, [sortState]);
 
+  // Render Table Element
+  const renderTable = () => {
+    // If the user's search returns no results,
+    if (searchTerm && !filteredData.length) {
+      // Render "No Results" message
+      return (
+        <div className="col text-center">
+          <p className="lead my-3 text-muted">
+            No results found for "{searchTerm}".
+          </p>
+        </div>
+      );
+    }
+
+    // Else render table with data
+    return (
+      <div className="table-responsive-lg ">
+        <table className="table table-borderless table-hover">
+          <TableHead
+            columns={[...props.columns]}
+            handleSort={handleSort}
+            sortColumn={sortState.sortedBy}
+          />
+          <TableBody columns={props.columns} data={handleVisibleData()} />
+        </table>
+      </div>
+    );
+  };
+
   // Render table name/title if one was provided as a prop
   const renderTableName = () => {
     if (props.name) return <h1 className="h2 fw-bold">{props.name}</h1>;
@@ -48,7 +77,6 @@ function Table(props) {
     if (!searchTerm) return tableData;
 
     // Else, if filteredData is empty (i.e. There were no matching results for the search), return null
-    if (!filteredData) return null;
 
     // Else, return fileredData (i.e. Search results)
     return filteredData;
@@ -104,16 +132,7 @@ function Table(props) {
         </div>
       </div>
       <div className="row g-0 mt-3 px-5 py-3 mx-auto bg-white">
-        <div className="table-responsive-lg ">
-          <table className="table table-borderless table-hover">
-            <TableHead
-              columns={[...props.columns]}
-              handleSort={handleSort}
-              sortColumn={sortState.sortedBy}
-            />
-            <TableBody columns={props.columns} data={handleVisibleData()} />
-          </table>
-        </div>
+        {renderTable()}
       </div>
     </div>
   );
