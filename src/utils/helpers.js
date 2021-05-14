@@ -22,17 +22,22 @@ export const searchObjArr = (searchTerm, dataSet, searchBy = []) => {
   const normalizedSearchTerm = searchTerm.toLowerCase();
 
   return dataSet.filter((item) => {
+    // If specific properties to search by were provided,
     if (searchBy.length) {
+      // Iterate through each given property,
       for (const property of searchBy) {
+        // And if the value of that particular property on the current item starts with the search term, return true
         if (item[property].startsWith(normalizedSearchTerm)) return true;
       }
-      return false;
     }
 
+    // If properties to search by were not given, get the name of the object's properties,
     const itemProperties = Object.keys(item);
+    // And search for values that begin with the search term in every property
     for (const property of itemProperties) {
       if (item[property].startsWith(normalizedSearchTerm)) return true;
     }
+    return false;
   });
 };
 
