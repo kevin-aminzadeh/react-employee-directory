@@ -1,9 +1,9 @@
 import axios from "axios";
 
 const API = {
-  fetchUsers: async function () {
+  fetchUsers: async function (page = 1, results = 50) {
     const res = await axios.get(
-      "https://randomuser.me/api/?results=50&nat=au,us"
+      `https://randomuser.me/api/?inc=id,name,gender,email,location&page=${page}&results=${results}&seed=foobar&nat=au`
     );
     const users = res.data.results;
 
