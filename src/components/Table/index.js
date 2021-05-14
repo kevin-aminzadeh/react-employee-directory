@@ -60,7 +60,11 @@ function Table(props) {
             handleSort={handleSort}
             sortColumn={sortState.sortedBy}
           />
-          <TableBody columns={props.columns} data={handleVisibleData()} />
+          <TableBody
+            columns={props.columns}
+            data={handleVisibleData()}
+            searchTerm={searchTerm}
+          />
         </table>
       </div>
     );

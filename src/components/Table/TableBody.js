@@ -5,7 +5,7 @@ function TableBody(props) {
   return (
     <tbody>
       {props.data.map((item, index) => (
-        <TableRow data={item} key={index} />
+        <TableRow data={item} key={index} searchTerm={props.searchTerm} />
       ))}
     </tbody>
   );
