@@ -1,7 +1,7 @@
-# Professional README Generator ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+# React Employee Directory ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 <p align="center">
-  <img src="./public/assets/img/demo.gif" alt="My Awesome Web Application demo screenshot">
+  <img src="./public/assets/img/demo.gif" alt="React Employee Directory Demo">
 </p>
 <p align="center">
 
