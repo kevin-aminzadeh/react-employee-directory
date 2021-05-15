@@ -39,8 +39,6 @@
 
 Employee Directory is a React.js based frontend web application which allows for searching and sorting of employee data. The purpose behind the development of this project is to demonstrate a good understanding of various React concepts including state management and component decomposition.
 
-In addition to generating the various written sections of a README, this application also allows the user to include a project screenshot, live demo link and select an appropriate license for their project. The latter of which is also displayed visually as a badge in the README.
-
 ### Technologies Used
 
 Employee Directory utilizes the following packages:
